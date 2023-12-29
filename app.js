@@ -18,7 +18,7 @@ main()
     .then(() => {
         console.log("connection successful")
     })
-    .catch(err => console.log(err));hello
+    .catch(err => console.log(err))
 
 async function main() {
     await mongoose.connect('mongodb://127.0.0.1:27017/wanderlust');
@@ -27,7 +27,8 @@ async function main() {
 }
 
 app.get("/", (req, res) => {
-    res.send('hi i am root')
+    // res.send('hi i am root')
+    res.render("listings/render")
 })
 
 //Index Route
