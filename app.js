@@ -11,7 +11,7 @@ app.set("views", path.join(__dirname, "views"))
 app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride("_method"))
 app.engine('ejs', ejsMate)
-app.use(express.static(path.join(__dirname,"/public")))
+app.use(express.static(path.join(__dirname, "/public")))
 
 
 main()
@@ -21,7 +21,11 @@ main()
     .catch(err => console.log(err))
 
 async function main() {
-    await mongoose.connect('mongodb://127.0.0.1:27017/wanderlust');
+    await mongoose.connect('mongodb://127.0.0.1:27017/wanderlust', {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        family: 4,
+    });
 
     // use `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
 }
