@@ -9,6 +9,7 @@ body {
 
 .container {
     flex: 1;
+    margin-top: 1rem;
     /* margin: 0;
     padding: 0; */
 }
@@ -66,7 +67,7 @@ body {
 
 /*Cards*/
 
-.card {
+.listing-card {
     border: none !important;
     margin-bottom: 2rem;
 }
@@ -131,4 +132,8 @@ body {
 
 .form{
     margin: 1rem;
+}
+
+h3{
+    margin-bottom: 1.5rem;
 }
