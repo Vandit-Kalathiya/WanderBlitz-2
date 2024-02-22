@@ -10,6 +10,8 @@ const wrapAsync = require('./utils/wrapAsync.js')
 const ExpressError = require('./utils/ExpressError.js')
 const { listingSchema, reviewSchema } = require('./schema.js')
 const listings = require('./routes/listing.js')
+const reviews = require('./routes/reviews.js')
+
 
 app.set("view engine", "ejs")
 app.set("views", path.join(__dirname, "views"))
@@ -36,17 +38,7 @@ app.get("/", (req, res) => {
     res.render("listings/render")
 })
 
-const validateReview = (req, res, next) => {
-    let { error } = reviewSchema.validate(req.body)
-    if (error) {
-        let errMsg = error.details.map((el) => el.message).join(",")
-        throw new ExpressError(404, errMsg)
-        // throw new ExpressError(404, error)
-    }
-    else {
-        next();
-    }
-}
+
 
 // let temp = Listing.findById('659917a48a21aebc9dfb0417')
 // console.log(temp)
@@ -54,25 +46,8 @@ const validateReview = (req, res, next) => {
 
 
 app.use("/listings", listings)
-//Reviews
-//Post Route
-app.post("/listings/:id/reviews", validateReview, wrapAsync(async (req, res) => {
-    let listing = await Listing.findById(req.params.id)
-    let newReview = new Review(req.body.review)
-    listing.reviews.push(newReview)
-    await newReview.save()
-    await listing.save()
-    console.log("new review saved.")
-    res.redirect(`/listings/${listing._id}`)
-}))
+app.use('/listings/:id/reviews',reviews)
 
-//Delete review Route
-app.delete("/listings/:id/reviews/:reviewId", async (req, res) => {
-    let { id, reviewId } = req.params;
-    await Listing.findByIdAndUpdate(id, { $pull: { reviews: reviewId } })
-    await Review.findByIdAndDelete(reviewId)
-    res.redirect(`/listings/${id}`)
-})
 
 app.all("*", (req, res, next) => {
     next(new ExpressError(404, "Page Not Found.!"))
