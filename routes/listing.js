@@ -4,6 +4,7 @@ const wrapAsync = require('../utils/wrapAsync.js')
 const ExpressError = require('../utils/ExpressError.js')
 const { listingSchema, reviewSchema } = require('../schema.js')
 const Listing = require("../models/listing")
+const flash = require('connect-flash')
 
 const validateListing = (req, res, next) => {
     let { error } = listingSchema.validate(req.body)
@@ -51,6 +52,7 @@ router.post("/", validateListing, wrapAsync(async (req, res, next) => {
     let newListing = new Listing(req.body.listing)
     // console.log(req.body.listing)
     await newListing.save();
+    req.flash('success','New Listing Created.!  ')
     res.redirect("/listings")
 }))
 

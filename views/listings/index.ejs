@@ -1,34 +1,35 @@
 <% layout("/layouts/boilerPlate") %>
+    <%=success %>
 
-    <body>
-        <h3>All Listings</h3>
-        <!-- <form action="/listings/new" method="get">
+        <body>
+            <h3>All Listings</h3>
+            <!-- <form action="/listings/new" method="get">
             <button>Cerate new listing</button>
         </form> -->
-        <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
-            <%for(let list of allListings){%>
-                <a href="/listings/<%=list._id%>" class="listing-link">
-                    <div class="card col listing-card">
-                        <img src="<%=list.image%>" class="card-img-top" alt="listing image" style="height: 20rem;">
-                        <div class="card-img-overlay"></div>
-                        <div class="card-body">
-                            <p class="card-text">
-                                <b>
-                                    <%=list.title%>
-                                </b>
-                                <br>
-                                &#8377; <%=list.price.toLocaleString("en-IN")%> / night
-                            </p> 
-                        </div>  
-                    </div>
-                </a>
-                <%}%>
-        </div>
-        <!-- <ul>
+            <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
+                <%for(let list of allListings){%>
+                    <a href="/listings/<%=list._id%>" class="listing-link">
+                        <div class="card col listing-card">
+                            <img src="<%=list.image%>" class="card-img-top" alt="listing image" style="height: 20rem;">
+                            <div class="card-img-overlay"></div>
+                            <div class="card-body">
+                                <p class="card-text">
+                                    <b>
+                                        <%=list.title%>
+                                    </b>
+                                    <br>
+                                    &#8377; <%=list.price.toLocaleString("en-IN")%> / night
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                    <%}%>
+            </div>
+            <!-- <ul>
             <%for(let list of allListings){%>
                 <li><a href="/listings/<%=list._id%>">
                         <%=list.title%>
                     </a></li>
                 <%}%>
         </ul> -->
-    </body>
+        </body>
