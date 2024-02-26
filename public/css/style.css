@@ -121,19 +121,33 @@ body {
     height: 30vh;
 }
 
-.btns{
+.btns {
     display: flex;
 }
 
-.show-card{
+.del {
+    margin-left: 2rem;
+}
+
+.show-card {
     padding-left: 0;
     padding-right: 0;
 }
 
-.form{
+.form {
     margin: 1rem;
 }
 
-h3{
+h3 {
     margin-bottom: 1.5rem;
+}
+
+@media only screen and (max-width: 764px) {
+    .col-6 {
+        width: 85%;
+    }
+
+    .offset-3 {
+        margin-left: 8%;
+    }
 }

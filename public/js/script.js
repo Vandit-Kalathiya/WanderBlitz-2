@@ -16,3 +16,17 @@
         }, false)
     })
 })()
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Get the alert element by its ID
+    var alertElement = document.getElementById('myAlert');
+
+    // Use setTimeout to close the alert after 3000 milliseconds (3 seconds)
+    setTimeout(function () {
+        // Check if the alert element exists (to avoid errors if it's already closed)
+        if (alertElement) {
+            // Close the alert by adding the 'd-none' class (Bootstrap class for hiding an element)
+            alertElement.style.display = 'none';
+        }
+    }, 2500); // Adjust the time as needed
+});
