@@ -9,8 +9,11 @@ const ejsMate = require('ejs-mate')
 // const wrapAsync = require('./utils/wrapAsync.js')
 const ExpressError = require('./utils/ExpressError.js')
 // const { listingSchema, reviewSchema } = require('./schema.js')
-const listings = require('./routes/listing.js')
-const reviews = require('./routes/reviews.js')
+
+const listingRouter = require('./routes/listing.js')
+const reviewrouter = require('./routes/reviews.js')
+const userRouter = require('./routes/user.js')
+
 const session = require('express-session')
 const flash = require('connect-flash')
 const passport = require('passport')
@@ -50,8 +53,11 @@ passport.deserializeUser(User.deserializeUser());
 app.use((req, res, next) => {
     res.locals.success = req.flash('success');
     res.locals.error = req.flash('error');
+    res.locals.currUser = req.user
     next();
 })
+
+const MONGO_URL = 'mongodb://127.0.0.1:27017/wanderlust'
 
 main()
     .then(() => {
@@ -60,7 +66,7 @@ main()
     .catch(err => console.log(err))
 
 async function main() {
-    await mongoose.connect('mongodb://127.0.0.1:27017/wanderlust');
+    await mongoose.connect(MONGO_URL);
 
     // use `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
 }
@@ -70,18 +76,19 @@ app.get("/", (req, res) => {
     res.render("listings/render")
 })
 
-app.get('/userDemo', async (req, res) => {
-    let fake = new User({
-        email: 'abc@gmail.com',
-        username: "delta1"
-    })
+// app.get('/userDemo', async (req, res) => {
+//     let fake = new User({
+//         email: 'abc@gmail.com',
+//         username: "delta1"
+//     })
 
-    let fakeUser = await User.register(fake, 'helloStudent')
-    res.send(fakeUser)
-})
+//     let fakeUser = await User.register(fake, 'helloStudent')
+//     res.send(fakeUser)
+// })
 
-app.use("/listings", listings)
-app.use('/listings/:id/reviews', reviews)
+app.use("/listings", listingRouter)
+app.use('/listings/:id/reviews', reviewrouter)
+app.use('/', userRouter)
 
 
 app.all("*", (req, res, next) => {
