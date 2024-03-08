@@ -1,3 +1,8 @@
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config()
+}
+// console.log(process.env.SECRET)
+
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
@@ -39,7 +44,7 @@ const sessionOptions = {
 }
 
 app.use(session(sessionOptions))
-app.use(flash())//Make that sure you have to use flash before all routes.!
+app.use(flash())//Make sure that you have used flash before all routes.!
 
 
 app.use(passport.initialize())

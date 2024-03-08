@@ -22,7 +22,7 @@ body {
 }
 
 .fa-compass {
-    color: #fe424d;
+    color: #74C0FC;
     font-size: 2rem;
 }
 
@@ -30,6 +30,19 @@ body {
     color: #222222 !important;
 }
 
+.site-name{
+    display: inline-block;
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: #222222;
+    margin-left: 0.5rem;
+}
+
+@media only screen and (max-width: 225px) {
+    .site-name{
+        display: none;
+    }
+}
 /*Footer*/
 
 .f-info-links,
@@ -123,6 +136,7 @@ body {
 
 .btns {
     display: flex;
+    justify-content: center;
 }
 
 .del {
