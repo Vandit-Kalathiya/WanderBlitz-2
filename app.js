@@ -44,7 +44,7 @@ const sessionOptions = {
 }
 
 app.use(session(sessionOptions))
-app.use(flash())//Make sure that you have used flash before all routes.!
+app.use(flash())//Make sure that you have used flash before all routes.
 
 
 app.use(passport.initialize())
