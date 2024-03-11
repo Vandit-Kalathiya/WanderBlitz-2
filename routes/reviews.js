@@ -5,7 +5,7 @@ const wrapAsync = require('../utils/wrapAsync.js')
 // const { listingSchema, reviewSchema } = require('../schema.js')
 const Listing = require("../models/listing")
 const Review = require("../models/reviews")
-const { validateReview, isLoggedIn, isAuthor } = require("../middleware.js");
+const { validateReview, isLoggedIn, isAuthor, isLoggedInForReview } = require("../middleware.js");
 const { postReview, deleteReview } = require("../controllers/reviews.js");
 
 
@@ -16,6 +16,6 @@ const { postReview, deleteReview } = require("../controllers/reviews.js");
 router.post("/", isLoggedIn, validateReview, wrapAsync(postReview))
 
 //Delete review Route
-router.delete("/:reviewId", isLoggedIn, isAuthor, wrapAsync(deleteReview))
+router.delete("/:reviewId", isLoggedInForReview, isAuthor, wrapAsync(deleteReview))
 
 module.exports = router

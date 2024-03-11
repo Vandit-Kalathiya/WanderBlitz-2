@@ -12,6 +12,16 @@ module.exports.isLoggedIn = (req, res, next) => {
     next();
 }
 
+module.exports.isLoggedInForReview = (req, res, next) => {
+    let { id } = req.params
+    if (!req.isAuthenticated()) {
+        req.session.currUrl = `/listings/${id}`
+        req.flash('error', 'You have to Login to delete review.!')
+        return res.redirect('/login')
+    }
+    next();
+}
+
 module.exports.savedUrl = (req, res, next) => {
     if (req.session.currUrl) {
         res.locals.currUrl = req.session.currUrl
