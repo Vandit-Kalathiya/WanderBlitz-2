@@ -78,7 +78,7 @@ async function main() {
 
 app.get("/", (req, res) => {
     // res.send('hi i am root')
-    res.render("listings/render")
+    res.render("listings/render");
 })
 
 // app.get('/userDemo', async (req, res) => {
