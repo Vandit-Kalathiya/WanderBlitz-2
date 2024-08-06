@@ -15,6 +15,7 @@ module.exports.newForm = (req, res) => {
 
 module.exports.showListing = async (req, res) => {
     let { id } = req.params
+    // console.log(id)
     const listing = await Listing.findById(id).populate({ path: "reviews", populate: { path: "author" } }).populate("owner")
     if (!listing) {
         req.flash('error', 'Listing you requested does not exist.!')
@@ -43,6 +44,7 @@ module.exports.createListing = async (req, res, next) => {
     // res.send("Done!")
 
     let url = req.file.path
+    console.log(req.file)
     let filename = req.file.filename
     let newListing = new Listing(req.body.listing)
     newListing.owner = req.user._id
@@ -60,7 +62,7 @@ module.exports.editListing = async (req, res) => {
     const listing = await Listing.findById(id)
     if (!listing) {
         req.flash('error', 'Listing you requested does not exist.!')
-        res.redirect('/listings')
+        res.redirect('/listings')   
     }
 
     let originalImageUrl = listing.image.url

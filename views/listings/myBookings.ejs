@@ -1,0 +1,45 @@
+<% layout("/layouts/boilerPlate") %>
+
+
+    <div class="container">
+        <h1 class="text-3xl font-extrabold mb-4">My Bookings...</h1>
+        <div class="row row-cols-md-2 row-cols-sm-1 m-auto ">
+            <%for(let date of checkInDates){%>
+                <div class="card mb-3 mt-4" style="width: 48%; border-width:0.1rem; margin-left:2%; padding: 0;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <a style="text-decoration: none;
+                                    color: #222222;" href="/listings/<%=date.placeId%>">
+                                <img src="<%=date.listing.image.url%>" class="img-fluid rounded-start"
+                                    style="width: 220px; height:130px;" alt="...">
+                            </a>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title mt-1">
+                                    <a style="text-decoration: none;
+    color: #222222;" href="/listings/<%=date.placeId%>">
+                                        <%=date.listing.title%>
+                                    </a>
+                                </h5>
+                                <p class="card-text mt-1" style="margin-bottom: 0.5rem;"><i class="fa-regular fa-calendar-days"></i>
+                                    <%=date.inDate.getDate()%>-<%=date.inDate.getMonth() + 1%>-
+                                            <%=date.inDate.getFullYear()%> &nbsp;<i class="fa-solid fa-arrow-right"></i>
+                                                &nbsp;<i class="fa-regular fa-calendar-days"></i>
+                                                &nbsp;<%=date.outDate.getDate()%>-
+                                                    <%=date.outDate.getMonth() + 1%>-
+                                                        <%=date.outDate.getFullYear()%><br>
+                                </p>
+                                <p style="margin-bottom: 0.35rem;"><i
+                                        class="fa-solid fa-moon"></i>&nbsp;&nbsp;&nbsp;&nbsp;<%=date.outDate.getDate()-date.inDate.getDate()%>
+                                        &nbsp;Night/s &nbsp;</p>
+                                <p class="card-text">Total Price :&nbsp;
+                                    &#8377;&nbsp;<%=date.totalPrice.toLocaleString("en-IN")%>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <%}%>
+        </div>
+    </div>

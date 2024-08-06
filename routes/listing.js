@@ -30,7 +30,6 @@ router.route('/:id')
 //Edit Route
 router.get("/:id/edit", isLoggedIn, isOwner, wrapAsync(editListing))
 
-
 //Index Route
 // router.get("/", wrapAsync(index))
 

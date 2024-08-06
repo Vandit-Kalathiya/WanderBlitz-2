@@ -18,6 +18,7 @@ const ExpressError = require('./utils/ExpressError.js')
 const listingRouter = require('./routes/listing.js')
 const reviewrouter = require('./routes/reviews.js')
 const userRouter = require('./routes/user.js')
+const bookingRouter = require('./routes/booking.js')
 
 const session = require('express-session')
 const flash = require('connect-flash')
@@ -63,7 +64,7 @@ app.use((req, res, next) => {
     next();
 })
 
-const MONGO_URL = 'mongodb://127.0.0.1:27017/wanderlust'
+const MONGO_URL = 'mongodb://127.0.0.1:27017/WanderBlitz'
 
 main()
     .then(() => {
@@ -77,9 +78,9 @@ async function main() {
     // use `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
 }
 
-app.get("/", (req, res) => {
+app.get("/home", (req, res) => {
     // res.send('hi i am root')
-    res.render("listings/render");
+    res.render("listings/home");
 })
 
 // app.get('/userDemo', async (req, res) => {
@@ -92,10 +93,10 @@ app.get("/", (req, res) => {
 //     res.send(fakeUser)
 // })
 
+app.use('/listings', bookingRouter)
 app.use("/listings", listingRouter)
 app.use('/listings/:id/reviews', reviewrouter)
 app.use('/', userRouter)
-
 
 app.all("*", (req, res, next) => {
     next(new ExpressError(404, "Page Not Found.!"))

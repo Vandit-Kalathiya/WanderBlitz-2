@@ -5,13 +5,13 @@
     </script>
 
     <body>
-        <div class="row">
-            <div class="col-8 m-auto mt-3 show-card">
+        <div>
+            <div class="col-6 m-auto mt-3 show-card">
                 <h3>
                     <%= listing.title%>
                 </h3>
             </div>
-            <div class="card col-8 m-auto show-card listing-card">
+            <div class="card col-6 m-auto show-card listing-card">
                 <img src="<%=listing.image.url%>" class="card-img-top show-img" alt="listing image">
                 <!-- <div class="card-body mb-3">
                     <p class="card-text">
@@ -36,19 +36,24 @@
                     </li>
                 </ul>
                 <br>
-                <%if (currUser && currUser._id.equals(listing.owner._id)){%>
-                    <div class="btns">
-                        <div class="col-1">
-                            <a href="/listings/<%=listing._id%>/edit" class="btn btn-dark"
-                                style="background-color: rgb(12, 157, 206); border:none">Edit</a><br><br>
+                <div class="btns">
+                    <%if (currUser && currUser._id.equals(listing.owner._id)){%>
+                        <div>
+                            <a href="/listings/<%=listing._id%>/edit" class="btn btn-dark">Edit</a><br><br>
                         </div>
-                        <form method="post" action="/listings/<%=listing._id%>?_method=DELETE">
-                            <button class="btn btn-dark offset-5 del">Delete</button>
+                        <form class="del-btn" method="post" action="/listings/<%=listing._id%>?_method=DELETE" c>
+                            <button class="btn btn-danger del">Delete</button>
                         </form>
-                    </div>
-                    <%}%>
+                        <%}%>
+                            <form action="/listings/<%=listing._id%>/checkout" class="book">
+                                <!-- <button class="btn btn-dark book-btn"><b>Book Now</b></button> -->
+                                <a href="/listings/<%=listing._id%>/checkout" class="btn btn-dark book-btn"><b>Book
+                                        Now</b></a><br><br>
+                            </form>
+                            
+                </div>
             </div>
-            <div class="col-8 m-auto mb-3">
+            <div class="col-6 m-auto mb-3">
                 <%if(currUser){%>
                     <hr>
                     <h4>Leave a Review</h4>
@@ -112,14 +117,14 @@
                                         </div>
                                         <form action="/listings/<%=listing._id%>/reviews/<%=review._id%>?_method=DELETE"
                                             class="mb-3" method="post">
-                                            <button class="btn btn-sm btn-dark">Delete</button>
+                                            <button class="btn btn-sm btn-danger">Delete</button>
                                         </form>
                                     </div>
                                     <%}%>
                             </div>
                             <%}%>
             </div>
-            <div class="col-8 m-auto mb-3">
+            <div class="col-6 m-auto mb-3">
                 <h3>Where you'll be</h3>
                 <div id="map"></div>
             </div>

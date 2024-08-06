@@ -1,0 +1,30 @@
+<% layout("/layouts/boilerPlate") %>
+
+    <body>
+        <div class="container col-8">
+            <h1 class="text-3xl font-extrabold mb-4">Book Your Stay</h1>
+            <br>
+            <form id="bookingForm" action="/listings/<%=id%>/checkout/book" method="post">
+                <div class="form-group" style="display: flex;">
+                    <div style="width: 50%;">
+                        <label for="checkInDate" class="form-label">Check-In Date:</label>
+                        <input type="date" name="checkInDate" id="checkInDate" class="form-control" required>
+                    </div>
+                    <div style="width:50%;margin-left:5%;">
+                        <label for="checkOutDate" class="form-label">Check-Out Date:</label>
+                        <input type="date" name="checkOutDate" id="checkOutDate" class="form-control" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="guests" class="form-label">Number of Guests:</label>
+                    <input type="number" name="guests" id="guests" min="1" class="form-control" required>
+                </div>
+                <div class="form-group col-2 m-auto">
+                    <button type="submit" class="btn btn-dark book-btn ms-auto">CheckOut</button>
+                </div>
+            </form>
+            <div id="bookingStatus"></div>
+        </div>
+
+        <!-- <script src="script.js"></script> -->
+    </body>

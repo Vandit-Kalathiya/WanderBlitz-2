@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 const Review = require('./reviews')
+const Booking = require('./booking')
 // const User = require('./user')
 
 const listingSchema = new Schema({
@@ -36,12 +37,24 @@ const listingSchema = new Schema({
             type: [Number],
             required: true
         }
-    }
+    },
+    bookings: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Booking"
+        }
+    ]
 })
 
 listingSchema.post("findOneAndDelete", async (listing) => {
     if (listing) {
         await Review.deleteMany({ _id: { $in: listing.reviews } })
+    }
+})
+
+listingSchema.post("findOneAndDelete", async (listing) => {
+    if (listing) {
+        await Booking.deleteMany({ _id: { $in: listing.bookings } })
     }
 })
 

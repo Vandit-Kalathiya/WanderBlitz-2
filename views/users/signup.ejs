@@ -1,13 +1,13 @@
 <% layout("/layouts/boilerPlate") %>
 
     <!-- <body> -->
-    <div class="row login-box mt-4">
-        <div>
-            <center>
-                <h2>SignUp on WanderBlitz</h2>
-            </center>
-        </div>
+    <div class="row login-box mt-3">
         <div class="col-6 offset-3 mt-3">
+            <div class="mb-3">
+                <!-- <center> -->
+                <h2><b>SignUp</b></h2>
+                <!-- </center> -->
+            </div>
             <form action="/signup" method="post" class="needs-validation" novalidate>
                 <div class="mb-3">
                     <label for="username" class="form-label">Username</label>
@@ -41,7 +41,7 @@
                         </div>
                     </div>
                 </div>
-                <button class="btn btn-dark">Sign Up</button>
+                <button class="btn btn-dark login-btn">Sign Up</button>
             </form>
             <br>
             <center>
@@ -147,8 +147,4 @@
                 });
             }, false);
         })();
-
-
-
-
     </script>
