@@ -74,3 +74,5 @@ module.exports.validateReview = (req, res, next) => {
         next();
     }
 }
+
+module.export.validate

@@ -23,7 +23,8 @@ const session = require('express-session')
 const flash = require('connect-flash')
 const passport = require('passport')
 const LocalStrategy = require('passport-local')
-const User = require('./models/user.js')
+const User = require('./models/user.js');
+const { Module } = require('module');
 
 app.set("view engine", "ejs")
 app.set("views", path.join(__dirname, "views"))

@@ -1,25 +1,27 @@
 <nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
     <div class="container-fluid">
         <div class="navbar-brand">
-            <a class="" href="/"><i class="fa-regular fa-compass"></i></a>
-            <a href="/" class="site-name">WanderBlitz</a>
+            <!-- <a class="" href="/"><i class="fa-regular fa-compass"></i></a> -->
+            <a href="/" class="site-name"><b>
+                    <spna class="title-letter">W</spna>ander<span class="title-letter">B</span>litz
+                </b></a>
         </div>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav ms-auto">
+            <!-- <div class="navbar-nav">
                 <a class="nav-link" href="/">Home</a>
-                <a class="nav-link" href="/listings">All Listings</a>
-                <a class="nav-link" href="/listings/new">Add New listing</a>
-            </div>
+            </div> -->
             <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/listings">Explore</a>
+                <a class="nav-link" href="/listings/new">WanderBlitz your home</a>
                 <%if(!currUser){%>
-                    <a class="nav-link" href="/signup">Sign Up</a>
-                    <a class="nav-link" href="/login">Log in</a>
+                    <a class="nav-link" href="/signup"><b>Sign Up</b></a>
+                    <a class="nav-link" href="/login"><b>Log in</b></a>
                     <%}%>
                         <%if(currUser){%>
-                            <a class="nav-link" href="/logout">Log out</a>
+                            <a class="nav-link" href="/logout"><b>Log out</b></a>
                             <%}%>
             </div>
         </div>
